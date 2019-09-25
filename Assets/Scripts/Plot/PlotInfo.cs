@@ -12,7 +12,6 @@ public class PlotInfo : MonoBehaviour
     public Color color;
     //
 
-
     [SerializeField]
     private TMP_Text uiText;
 
@@ -29,6 +28,11 @@ public class PlotInfo : MonoBehaviour
         cropState = BehaviourStates.nocrop;
     }
 
+    private void Start()
+    {
+        uiText.enabled = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -36,6 +40,8 @@ public class PlotInfo : MonoBehaviour
 
         if (cropState == BehaviourStates.planted)
         {
+            uiText.enabled = true;
+
             if (timer >= 0)
             {
                 timer -= Time.deltaTime;
@@ -48,8 +54,7 @@ public class PlotInfo : MonoBehaviour
                 if (cropState == BehaviourStates.completegrown)
                 {
                     timer = 0.0f;
-                    uiText.text = "0.00";
-                    Debug.Log("Growth Complete");
+                    uiText.enabled = false;
                     //display tick/sound effect
                 }
             }

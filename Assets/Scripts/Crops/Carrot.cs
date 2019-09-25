@@ -14,15 +14,20 @@ public class Carrot : Crops
 
     public void OnSelection()
     {
-        plotInfo.color = color;
+        if (money.money >= purchasePrice)
+        {
+            plotInfo.color = color;
 
-        plotInfo.timer = growthTime;
+            plotInfo.timer = growthTime;
 
-        plotInfo.cropName = cropName;
-        plotInfo.growthTime = growthTime;
-        plotInfo.purchasePrice = purchasePrice;
-        plotInfo.sellingPrice = sellingPrice;
+            plotInfo.cropName = cropName;
+            plotInfo.growthTime = growthTime;
+            plotInfo.purchasePrice = purchasePrice;
+            plotInfo.sellingPrice = sellingPrice;
 
-        plotInfo.cropState = PlotInfo.BehaviourStates.planted;
+            plotInfo.cropState = PlotInfo.BehaviourStates.planted;
+
+            money.money -= purchasePrice;
+        }
     }
 }

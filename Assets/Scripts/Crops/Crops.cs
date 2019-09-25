@@ -11,6 +11,8 @@ public class Crops : MonoBehaviour
     protected Color color;
     //
 
+    protected Money money;
+
     protected GameObject plot;
     protected PlotInfo plotInfo;
     protected string cropName;
@@ -21,6 +23,8 @@ public class Crops : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        money = FindObjectOfType<Money>();
+
         //
         image = this.gameObject.GetComponent<Image>();
         color = image.color;
