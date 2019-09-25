@@ -2,17 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tomato : MonoBehaviour
+public class Tomato : Crops
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void SetAttributes()
     {
-        
+        cropName = "Tomato";
+        growthTime = 5f;
+        purchasePrice = 1;
+        sellingPrice = 5;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnSelection()
     {
-        
+        plotInfo.color = color;
+
+        plotInfo.timer = growthTime;
+
+        plotInfo.cropName = cropName;
+        plotInfo.growthTime = growthTime;
+        plotInfo.purchasePrice = purchasePrice;
+        plotInfo.sellingPrice = sellingPrice;
+
+        plotInfo.cropState = PlotInfo.BehaviourStates.planted;
     }
 }
