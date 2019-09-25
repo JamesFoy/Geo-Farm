@@ -21,24 +21,22 @@ public class PlotInteraction : MonoBehaviour
         plotState = Behaviours.NotInUse;
     }
 
-    void OnMouseEnter()
-    {
-        //Highlight/change image
-
-    }
-
     public void OnButtonClick()
     {
+        //when you click an option (works even if you cant purcahse the selection)
         SelectWheel.SetActive(false);
     }
 
     private void OnMouseDown()
     {
+        //if the plot of land isnt in use
         if (plotState == Behaviours.NotInUse)
         {
+            //display crop selection pop up
             SelectWheel.SetActive(true);
         }
 
+        //if the crop is finished growing
         if (plotInfo.cropState == PlotInfo.BehaviourStates.completegrown)
         {
             //sell crop
@@ -52,8 +50,10 @@ public class PlotInteraction : MonoBehaviour
 
     private void Update()
     {
+        //if a crop has been put in a plot
         if (plotInfo.cropState != PlotInfo.BehaviourStates.nocrop)
         {
+            //the plot is being used
             plotState = Behaviours.BeingUsed;
         }
     }

@@ -31,6 +31,7 @@ public class Crops : MonoBehaviour
         //
 
         SetAttributes();
+
         plotInfo = gameObject.GetComponentInParent<PlotInfo>();
         plot = gameObject.GetComponentInParent<PlotInteraction>().gameObject;
     }

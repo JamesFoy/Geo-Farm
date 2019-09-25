@@ -22,6 +22,7 @@ public class UICountdown : MonoBehaviour
 
     private void Update()
     {
+        //timer for the game
         if (timer >= 0.0f && canCount)
         {
             timer -= Time.deltaTime;
