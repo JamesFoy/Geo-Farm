@@ -14,6 +14,8 @@ public class Cabbage : Crops
 
     public void OnSelection()
     {
+        plotInfo.color = color;
+
         plotInfo.cropName = cropName;
         plotInfo.growthTime = growthTime;
         plotInfo.purchasePrice = purchasePrice;

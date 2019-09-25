@@ -1,9 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlotInfo : MonoBehaviour
 {
+    //
+    [SerializeField]
+    Image image;
+    public Color color;
+    //
+
     public string cropName = "null";
     public float timer;
     public float growthTime;
@@ -20,6 +27,8 @@ public class PlotInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        image.color = color;
+
         if (cropState == BehaviourStates.planted)
         {
             timer = growthTime;
