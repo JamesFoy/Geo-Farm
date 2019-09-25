@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlotInfo : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class PlotInfo : MonoBehaviour
     Image image;
     public Color color;
     //
+
+
+    [SerializeField]
+    private TMP_Text uiText;
 
     public string cropName = "null";
     public float timer;
@@ -31,18 +36,22 @@ public class PlotInfo : MonoBehaviour
 
         if (cropState == BehaviourStates.planted)
         {
-            timer = growthTime;
-
             if (timer >= 0)
             {
                 timer -= Time.deltaTime;
+                uiText.text = timer.ToString("F");
             }
 
             else if (timer <= 0)
             {
-                timer = 0.0f;
-                Debug.Log("Growth Complete");
-                //display tick/sound effect
+                cropState = BehaviourStates.completegrown;
+                if (cropState == BehaviourStates.completegrown)
+                {
+                    timer = 0.0f;
+                    uiText.text = "0.00";
+                    Debug.Log("Growth Complete");
+                    //display tick/sound effect
+                }
             }
         }
     }

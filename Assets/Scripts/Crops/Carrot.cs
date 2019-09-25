@@ -16,6 +16,8 @@ public class Carrot : Crops
     {
         plotInfo.color = color;
 
+        plotInfo.timer = growthTime;
+
         plotInfo.cropName = cropName;
         plotInfo.growthTime = growthTime;
         plotInfo.purchasePrice = purchasePrice;

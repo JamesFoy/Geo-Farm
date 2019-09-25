@@ -16,9 +16,13 @@ public class Cabbage : Crops
     {
         plotInfo.color = color;
 
+        plotInfo.timer = growthTime;
+
         plotInfo.cropName = cropName;
         plotInfo.growthTime = growthTime;
         plotInfo.purchasePrice = purchasePrice;
         plotInfo.sellingPrice = sellingPrice;
+
+        plotInfo.cropState = PlotInfo.BehaviourStates.planted;
     }
 }
