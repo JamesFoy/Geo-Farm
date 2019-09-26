@@ -12,7 +12,7 @@ public class Wheet : Crops
         sellingPrice = 14;
     }
 
-    public void OnSelection()
+    public override void OnSelection()
     {
         if (money.money >= purchasePrice)
         {
@@ -28,6 +28,10 @@ public class Wheet : Crops
             plotInfo.cropState = PlotInfo.BehaviourStates.planted;
 
             money.money -= purchasePrice;
+
+            plotInfo.cropChoice = PlotInfo.CropChoice.wheet;
+
+            plotInfo.buySound.Play();
         }
     }
 }

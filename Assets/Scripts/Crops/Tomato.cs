@@ -7,12 +7,12 @@ public class Tomato : Crops
     public override void SetAttributes()
     {
         cropName = "Tomato";
-        growthTime = 5f;
+        growthTime = 25f;
         purchasePrice = 1;
         sellingPrice = 5;
     }
 
-    public void OnSelection()
+    public override void OnSelection()
     {
         if (money.money >= purchasePrice)
         {
@@ -28,6 +28,10 @@ public class Tomato : Crops
             plotInfo.cropState = PlotInfo.BehaviourStates.planted;
 
             money.money -= purchasePrice;
+
+            plotInfo.cropChoice = PlotInfo.CropChoice.tomato;
+
+            plotInfo.buySound.Play();
         }
     }
 }

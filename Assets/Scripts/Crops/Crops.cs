@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class Crops : MonoBehaviour
 {
@@ -39,5 +40,16 @@ public class Crops : MonoBehaviour
     public virtual void SetAttributes()
     {
         //this is used to set each different crops attributes
+    }
+
+    public virtual void OnSelection()
+    {
+
+    }
+
+    protected void WaterMe()
+    {
+        Debug.Log("Water Me Start");
+        StartCoroutine(plotInfo.WaterTime());
     }
 }

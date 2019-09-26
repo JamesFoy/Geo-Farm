@@ -11,12 +11,15 @@ public class UICountdown : MonoBehaviour
     [SerializeField]
     private float mainTimer;
 
-    private float timer;
+    GameOverMenu gameOverMenu;
+
+    public float timer;
     private bool canCount = true;
     private bool doOnce = false;
 
     private void Start()
     {
+        gameOverMenu = FindObjectOfType<GameOverMenu>();
         timer = mainTimer;
     }
 
@@ -35,6 +38,7 @@ public class UICountdown : MonoBehaviour
             doOnce = true;
             uiText.text = "0.00";
             timer = 0.0f;
+            gameOverMenu.gameStates = GameOverMenu.GameStates.pause;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +8,10 @@ public class PlotInteraction : MonoBehaviour
     [SerializeField]
     GameObject SelectWheel;
 
+    IconAnimation iconAnimation;
     Money money;
 
+    GameOverMenu gameOverMenu;
     PlotInfo plotInfo;
 
     public enum Behaviours {NotInUse, BeingUsed, Purchaseable}
@@ -16,6 +19,8 @@ public class PlotInteraction : MonoBehaviour
 
     private void Start()
     {
+        iconAnimation = GetComponentInChildren<IconAnimation>();
+        gameOverMenu = FindObjectOfType<GameOverMenu>();
         money = FindObjectOfType<Money>();
         plotInfo = GetComponent<PlotInfo>();
         plotState = Behaviours.NotInUse;
@@ -29,23 +34,51 @@ public class PlotInteraction : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //if the plot of land isnt in use
-        if (plotState == Behaviours.NotInUse)
+        if (gameOverMenu.gameStates != GameOverMenu.GameStates.pause)
         {
-            //display crop selection pop up
-            SelectWheel.SetActive(true);
-        }
+            //if the plot of land isnt in use
+            if (plotState == Behaviours.NotInUse)
+            {
+                //display crop selection pop up
+                SelectWheel.SetActive(true);
+            }
 
-        //if the crop is finished growing
-        if (plotInfo.cropState == PlotInfo.BehaviourStates.completegrown)
-        {
-            //sell crop
-            money.money += plotInfo.sellingPrice;
+            if (plotInfo.cropState == PlotInfo.BehaviourStates.water)
+            {
+                plotInfo.waterMe = false;
+                plotInfo.cropState = PlotInfo.BehaviourStates.planted;
+                StopCoroutine(plotInfo.WaterTime());
+            }
 
-            //Display selection wheel
-            SelectWheel.SetActive(true);
-            plotState = Behaviours.NotInUse;
+            //if the crop is finished growing
+            if (plotInfo.cropState == PlotInfo.BehaviourStates.completegrown)
+            {
+                //sell crop
+                money.money += plotInfo.sellingPrice;
+                plotInfo.sellSound.Play();
+
+                //Reset Method
+                Reset();
+
+                //Display selection wheel
+                SelectWheel.SetActive(true);
+
+            }
         }
+    }
+
+    private void Reset()
+    {
+        plotState = Behaviours.NotInUse;
+        plotInfo.cropState = PlotInfo.BehaviourStates.nocrop;
+        plotInfo.cropChoice = PlotInfo.CropChoice.non;
+        plotInfo.cropName = "null";
+        plotInfo.timer = 0;
+        plotInfo.growthTime = 0;
+        plotInfo.purchasePrice = 0;
+        plotInfo.sellingPrice = 0;
+        plotInfo.color = plotInfo.cacheColor;
+        plotInfo.sellingIcon.enabled = true;
     }
 
     private void Update()

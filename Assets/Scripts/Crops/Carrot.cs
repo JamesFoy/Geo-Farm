@@ -12,7 +12,7 @@ public class Carrot : Crops
         sellingPrice = 10;
     }
 
-    public void OnSelection()
+    public override void OnSelection()
     {
         if (money.money >= purchasePrice)
         {
@@ -28,6 +28,10 @@ public class Carrot : Crops
             plotInfo.cropState = PlotInfo.BehaviourStates.planted;
 
             money.money -= purchasePrice;
+
+            plotInfo.cropChoice = PlotInfo.CropChoice.carrot;
+
+            plotInfo.buySound.Play();
         }
     }
 }

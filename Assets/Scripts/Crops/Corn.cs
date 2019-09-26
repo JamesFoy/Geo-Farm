@@ -7,12 +7,12 @@ public class Corn : Crops
     public override void SetAttributes()
     {
         cropName = "Corn";
-        growthTime = 5;
+        growthTime = 15;
         purchasePrice = 2;
         sellingPrice = 4;
     }
 
-    public void OnSelection()
+    public override void OnSelection()
     {
         if (money.money >= purchasePrice)
         {
@@ -28,6 +28,10 @@ public class Corn : Crops
             plotInfo.cropState = PlotInfo.BehaviourStates.planted;
 
             money.money -= purchasePrice;
+
+            plotInfo.cropChoice = PlotInfo.CropChoice.corn;
+
+            plotInfo.buySound.Play();
         }
     }
 }
