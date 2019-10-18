@@ -21,7 +21,7 @@ public class IconAnimation : MonoBehaviour
     {
         if (plotInfo.cropState == PlotInfo.BehaviourStates.planted)
         {
-            if (!anim.GetBool("Purcahse"))
+            if (!anim.GetBool("Purchase"))
             {
                 anim.SetBool("Purchase", true);
             }
