@@ -12,6 +12,8 @@ public class Crops : MonoBehaviour
     protected Color color;
     //
 
+    public GameEvent purchaseEvent;
+
     protected Money money;
 
     protected GameObject plot;

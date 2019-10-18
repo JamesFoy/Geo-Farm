@@ -32,6 +32,8 @@ public class Carrot : Crops
             plotInfo.cropChoice = PlotInfo.CropChoice.carrot;
 
             plotInfo.buySound.Play();
+
+            purchaseEvent.Raise();
         }
     }
 }

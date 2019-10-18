@@ -7,10 +7,16 @@ using TMPro;
 
 public class GameOverMenu : MonoBehaviour {
 
+    private bool scoreUpdated;
+
     [SerializeField]
     TMP_Text textScore;
 
+    [SerializeField]
+    TMP_Text highTextScore;
+
     Money money;
+    private int highScore;
 
     public string mainMenuLevel; //Allows the script to access the Main Menu scene
 
@@ -28,11 +34,41 @@ public class GameOverMenu : MonoBehaviour {
         money = FindObjectOfType<Money>();
         countdown = FindObjectOfType<UICountdown>();
         gameStates = GameStates.play;
+
+        if (PlayerPrefs.HasKey("HighScore"))
+        {
+            highScore = PlayerPrefs.GetInt("HighScore");
+        }
+
+        scoreUpdated = false;
+    }
+
+    void SaveScore()
+    {
+        if (money.money > highScore)
+        {
+            PlayerPrefs.SetInt("HighScore", money.money);
+        }
+
+        PlayerPrefs.Save();
+    }
+
+    void DeleteKey()
+    {
+        PlayerPrefs.DeleteKey("HighScore");
     }
 
     private void Update()
     {
-        textScore.text = "Your Score: " + money.money; 
+        if (!scoreUpdated && countdown.timer <= 0)
+        {
+            SaveScore();
+            Debug.Log("High Score Updated");
+            scoreUpdated = true;
+        }
+
+        textScore.text = "Your Score: " + money.money;
+        highTextScore.text = "High Score: " + PlayerPrefs.GetInt("HighScore");
 
         if (gameStates == GameStates.play)
         {

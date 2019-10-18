@@ -32,6 +32,8 @@ public class Corn : Crops
             plotInfo.cropChoice = PlotInfo.CropChoice.corn;
 
             plotInfo.buySound.Play();
+
+            purchaseEvent.Raise();
         }
     }
 }

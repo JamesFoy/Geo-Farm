@@ -32,6 +32,8 @@ public class Tomato : Crops
             plotInfo.cropChoice = PlotInfo.CropChoice.tomato;
 
             plotInfo.buySound.Play();
+
+            purchaseEvent.Raise();
         }
     }
 }

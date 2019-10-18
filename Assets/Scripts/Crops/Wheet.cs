@@ -32,6 +32,8 @@ public class Wheet : Crops
             plotInfo.cropChoice = PlotInfo.CropChoice.wheet;
 
             plotInfo.buySound.Play();
+
+            purchaseEvent.Raise();
         }
     }
 }

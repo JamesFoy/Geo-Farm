@@ -32,6 +32,8 @@ public class Raddish : Crops
             plotInfo.cropChoice = PlotInfo.CropChoice.raddish;
 
             plotInfo.buySound.Play();
+
+            purchaseEvent.Raise();
         }
     }
 }

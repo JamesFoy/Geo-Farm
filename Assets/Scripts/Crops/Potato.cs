@@ -32,6 +32,8 @@ public class Potato : Crops
             plotInfo.cropChoice = PlotInfo.CropChoice.potato;
 
             plotInfo.buySound.Play();
+
+            purchaseEvent.Raise();
         }
     }
 }
